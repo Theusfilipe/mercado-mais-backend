@@ -7,6 +7,9 @@ module.exports = {
         const { email, password } = req.body;
 
         let owner = await Owner.findOne({ email });
+        if(!owner){
+            return res.status(400).json({error: 'No user found'});
+        }
 
         owner.comparePassword(password, function(err, isMatch) {
             if (isMatch && isMatch == true){

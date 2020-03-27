@@ -22,7 +22,7 @@ module.exports = {
 
     async store (req, res){
         //const { filename } = req.file;
-        const { address, freight, dateEntry} = req.body;
+        const { address, addressNumber, freight, cep, city, state, district, dateEntry} = req.body;
         const { client_id, market_id } = req.headers;
         //console.log(owner_id);
         const client = await Client.findById(client_id);
@@ -41,6 +41,11 @@ module.exports = {
             client:client_id,
             total:0,
             address,
+            addressNumber,
+            cep,
+            city,
+            state,
+            district,
             freight, 
             dateEntry,
             bought:false,
